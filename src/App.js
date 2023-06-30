@@ -1,39 +1,25 @@
-// Import our own custom components
 import SkillList from "./components/SkillList";
 import NewSkillForm from "./components/NewSkillForm";
-import "./styles.css";
-
-// Add the skills array
-const skills = [
-    { name: "HTML", level: 5 },
-    { name: "CSS", level: 3 },
-    { name: "JavaScript", level: 4 },
-    { name: "Python", level: 2 },
-];
-
-// App.js should be the parent to our entire React application
+import "./styles/styles.css";
+import { useState } from "react";
 function App() {
-    // Inside the functional component we can write logical JavaScript at the top level (inside the function, outside of the return)
-    
-    // To return a user interface, we use the return keywaord to return something similar to HTML
-
-    // Some attributes we can't use, like "class" or "for" as these are reserved words in JS, there are alternatives like className and htmlFor
+    const [skills, setSkills] = useState([
+        { skill: "HTML", level: 5 },
+        { skill: "CSS", level: 3 },
+        { skill: "JavaScript", level: 4 },
+        { skill: "Python", level: 2 },
+    ]);
+    const [showSkills, setShowSkills] = useState(true)
     return (
-        // Fragments are empty HTML tags that satisfy the single parent necessity in a React component
-        // They won't be displayed in the final rendered HTML page
         <>
             <div className="App">
                 <h1 className="title">React Dev Skills</h1>
-
-                {/* To Do List goes here */}
-                <SkillList skills={skills} />
+                <button className="btn" onClick={() => setShowSkills(!showSkills)}>{ showSkills ? 'HIDE': 'SHOW' }</button>
+                {showSkills && <SkillList skills={skills} />}
                 <hr></hr>
-                <NewSkillForm />
+                <NewSkillForm skills={skills} setSkills={setSkills}/>
             </div>
         </>
     )
-
-    // Imperitive to building a react app is the return keyword that will return our "HTML"
 }
-
 export default App

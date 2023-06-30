@@ -1,10 +1,9 @@
-import "./SkillListItem.css";
+import "../styles/SkillListItem.css";
 
 
 function SkillListItem({ skill, level, index }) {
     return (
         <li className="SkillListItem" style={{
-            // backgroundColor: index % 2 ? "plum" : "lavender"
         }}>
             {/* <div className="index">{index}</div> */}
             <div className="skill">{skill}</div>
